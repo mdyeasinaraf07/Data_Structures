@@ -5,7 +5,7 @@ vector <int> quick_sort(vector <int> full_vector){
     if(full_vector.size() <= 1){
         return full_vector;
     }
-    int pivot = full_vector.size() - 1;
+    int pivot = rand() % (full_vector.size());
     vector <int> small_half;
     vector <int> big_half;
     for(int i = 0; i < full_vector.size(); i++){
