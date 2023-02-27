@@ -6,10 +6,12 @@ vector <int> quick_sort(vector <int> full_vector){
         return full_vector;
     }
     int pivot = full_vector.size() - 1;
+    int cnt = 0;
     vector <int> small_half;
     vector <int> big_half;
     for(int i = 0; i < full_vector.size(); i++){
         if(full_vector[i] == full_vector[pivot]){
+            cnt++;
             continue;
         }
         else if(full_vector[i] < full_vector[pivot]){
@@ -25,9 +27,9 @@ vector <int> quick_sort(vector <int> full_vector){
     for(int i = 0; i < sorted_small_half.size(); i++){
         sorted_done.push_back(sorted_small_half[i]);
     }
-
-    sorted_done.push_back(full_vector[pivot]);
-
+    for(int i = 0; i < cnt; i++){
+        sorted_done.push_back(full_vector[pivot]);
+    }
     for(int i = 0; i < sorted_big_half.size(); i++){
         sorted_done.push_back(sorted_big_half[i]);
     }
@@ -50,3 +52,4 @@ int main(){
 
     return 0;
 }
+
