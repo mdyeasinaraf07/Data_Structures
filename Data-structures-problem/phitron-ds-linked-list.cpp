@@ -24,9 +24,10 @@ void insert_at_head(Node*& head, int value){
 }
 void print_linked_list(Node* head){
     while(head != NULL){
-        cout<< head-> data<< endl;
+        cout<< head-> data<< " ";
         head = head-> next;
     }
+    cout<< "\n";
 }
 
 int main(){
