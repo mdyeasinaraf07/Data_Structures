@@ -101,7 +101,7 @@ void delete_at_head(Node*& head){
 
 
 /////////////////////////////////////////////
-void delete_any_index(Node* head, int index){
+void delete_any_index(Node*& head, int index){
     int sizee = get_size(head);
     if(index < 0 || index > sizee - 1){
         return;
@@ -118,6 +118,34 @@ void delete_any_index(Node* head, int index){
     Node* temp2 = temp1-> next;
     temp1-> next = temp2-> next;
     delete temp2;
+}
+
+
+/////////////////////////////////////////////
+void insert_after_value(Node* head, int value, int push_value){
+    Node* temp = head;
+    while(temp != NULL){
+        if(temp-> data == value){
+            break;
+        }
+        temp = temp-> next;
+    }
+    if(temp == NULL){
+        cout<< "Your value is doesn't exist in this linked list\n";
+    }
+    Node* new_node = create_node(push_value);
+    new_node-> next = temp-> next;
+    temp-> next = new_node;
+}
+
+
+/////////////////////////////////////////////
+void reverse_print(Node* head){
+    if(head == NULL){
+        return;
+    }
+    reverse_print(head-> next);
+    cout<< head-> data<< " ";
 }
 
 /////////////////////////////////////////////
@@ -139,7 +167,6 @@ int main(){
 
     cout<< "After insert a value:  ";
     insert_at_any_index(head, 3, 200);
-
     print_linked_list(head);
 
     linked_list_size = get_size(head);
@@ -153,5 +180,14 @@ int main(){
     delete_any_index(head, 3);
     print_linked_list(head);
     cout<< "linked list size is = "<< get_size(head)<< "\n";
+
+    insert_after_value(head, 200, 500);
+    print_linked_list(head);
+    cout<< "linked list size is = "<< get_size(head)<< "\n";
+
+
+    reverse_print(head);
+
+
     return 0;
 }
