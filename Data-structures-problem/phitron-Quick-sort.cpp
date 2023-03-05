@@ -1,55 +1,56 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector <int> quick_sort(vector <int> full_vector){
-    if(full_vector.size() <= 1){
-        return full_vector;
+vector <int> quick_sort(vector <int> vectorr){
+    if(vectorr.size() <= 1){
+        return vectorr;
     }
-    int pivot = full_vector.size() - 1;
+    int pivot = rand() % vectorr.size() - 1;
     int pivot_count = 0;
-    vector <int> small_half;
-    vector <int> big_half;
-    for(int i = 0; i < full_vector.size(); i++){
-        if(full_vector[i] == full_vector[pivot]){
-            pivot_count++;
-            continue;
+    vector <int> small;
+    vector <int> big;
+    for(int i = 0; i < vectorr.size(); i++){
+        if(vectorr[i] < vectorr[pivot]){
+            small.push_back(vectorr[i]);
         }
-        else if(full_vector[i] < full_vector[pivot]){
-            small_half.push_back(full_vector[i]);
+        else if(vectorr[i] > vectorr[pivot]){
+            big.push_back(vectorr[i]);
         }
         else{
-            big_half.push_back(full_vector[i]);
+            pivot_count++;
         }
     }
-    vector <int> sorted_small_half = quick_sort(small_half);
-    vector <int> sorted_big_half = quick_sort(big_half);
+    vector <int> sorted_small = quick_sort(small);
+    vector <int> sorted_big = quick_sort(big);
     vector <int> sorted_done;
-    for(int i = 0; i < sorted_small_half.size(); i++){
-        sorted_done.push_back(sorted_small_half[i]);
+    for(int i = 0; i < sorted_big.size(); i++){
+        sorted_done.push_back(sorted_big[i]);
     }
+
     for(int i = 0; i < pivot_count; i++){
-        sorted_done.push_back(full_vector[pivot]);
+        sorted_done.push_back(vectorr[pivot]);
     }
-    for(int i = 0; i < sorted_big_half.size(); i++){
-        sorted_done.push_back(sorted_big_half[i]);
+
+    for(int i = 0; i < sorted_small.size(); i++){
+        sorted_done.push_back(sorted_small[i]);
     }
 
     return sorted_done;
+
 }
 
 int main(){
     int n;
     cin>> n;
-    vector <int> vector_(n);
+    vector <int> vectorr(n);
     for(int i = 0; i < n; i++){
-        cin>> vector_[i];
+        cin>> vectorr[i];
     }
-    vector <int> sorted_vector = quick_sort(vector_);
+    vector <int> sorted_vector = quick_sort(vectorr);
     for(int i = 0; i < sorted_vector.size(); i++){
-        cout<< sorted_vector[i]<< "\n";
+        cout<< sorted_vector[i]<< " ";
     }
-
+    cout<< "\n";
 
     return 0;
 }
-
