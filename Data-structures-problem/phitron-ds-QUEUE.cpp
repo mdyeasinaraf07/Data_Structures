@@ -35,6 +35,7 @@ int main(){
     //When queue is empty:
     cout<< q.front()<< "\n";
     cout<< "Size = "<< q.size()<< endl;
+    cout<< q.empty()<< "\n";
 
     return 0;
 }
